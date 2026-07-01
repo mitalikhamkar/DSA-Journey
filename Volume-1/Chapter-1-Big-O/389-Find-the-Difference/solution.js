@@ -4,15 +4,20 @@
  * @return {character}
  */
 var findTheDifference = function(s, t) {
-    let merge=s+t;
-    let arr=Array.from(merge);
-        let freq=arr.reduce((acc,val) => {
-            acc[val] = (acc[val] || 0) + 1;
-            return acc;
-        }, {});
-    for(let key in freq) {
-        if(freq[key] === 1) {
+
+    let freq = {};
+
+    for (let ch of t) {
+        freq[ch] = (freq[ch] || 0) + 1;
+    }
+
+    for (let ch of s) {
+        freq[ch]--;
+    }
+
+    for (let key in freq) {
+        if (freq[key] === 1) {
             return key;
         }
     }
-}
+};
